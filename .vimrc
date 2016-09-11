@@ -7,9 +7,7 @@ set tabstop=2 "インデントをスペース4つ分に設定
 set smartindent "オートインデント
 set shiftwidth=2
 set cursorline "cursor color
-set cursorcolumn "column background color
 set laststatus=2 
-
 
 "#####検索設定#####
 set ignorecase "大文字/小文字の区別なく検索する
@@ -18,10 +16,29 @@ set wrapscan "検索時に最後まで行ったら最初に戻る
 set hlsearch " search hight light
 set incsearch " incremental search
 
+" クリップボード有効
 set clipboard=unnamed,unnamedplus
 
-" Start Neobundle Setting
 
+" 前回編集した場所から始める
+autocmd BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal g`\"" | endif
+au BufWritePost * mkview
+autocmd BufReadPost * loadview
+
+" タブで、補完
+imap <TAB> <C-X><C-O>
+
+" 強化されたコマンドライン補完を使用
+set wildmenu
+
+" Oで改行挿入
+nnoremap O :<C-u>call append(expand('.'), '')<Cr>j
+
+" エイリアス設定
+:command Tr NERDTree
+:COmmand P set paste
+
+" Start Neobundle Setting
 set runtimepath+=~/.vim/bundle/neobundle.vim/
 
 "Required:
@@ -37,7 +54,8 @@ NeoBundle 'Townk/vim-autoclose'
 NeoBundle 'mattn/emmet-vim'
 " syntax check
 NeoBundle 'scrooloose/syntastic'
-
+" lightline
+NeoBundle 'itchyny/lightline.vim'
 
 call neobundle#end()
 " Required:
@@ -47,15 +65,11 @@ filetype plugin indent on
 
 
 
-autocmd BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal g`\"" | endif
-
-au BufWritePost * mkview
-autocmd BufReadPost * loadview
 
 " setting vundle
 
 set nocompatible               " be iMproved
-filetype off                   " required!
+filetype off                  " required!
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 " let Vundle manage Vundle
