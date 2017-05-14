@@ -25,9 +25,6 @@ autocmd BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "norm
 au BufWritePost * mkview
 autocmd BufReadPost * loadview
 
-" タブで、補完
-imap <TAB> <C-X><C-O>
-
 " 強化されたコマンドライン補完を使用
 set wildmenu
 
@@ -36,7 +33,6 @@ nnoremap O :<C-u>call append(expand('.'), '')<Cr>j
 
 " エイリアス設定
 :command Tr NERDTree
-:COmmand P set paste
 
 " Start Neobundle Setting
 set runtimepath+=~/.vim/bundle/neobundle.vim/
@@ -62,44 +58,3 @@ call neobundle#end()
 filetype plugin indent on
 
 " End Neobundle Setting
-
-
-
-
-" setting vundle
-
-set nocompatible               " be iMproved
-filetype off                  " required!
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
-" let Vundle manage Vundle
-" required!
-Bundle 'gmarik/vundle'
-" My Bundles here:
-"
-" original repos on github
-Bundle 'tpope/vim-fugitive'
-Bundle 'Lokaltog/vim-easymotion'
-Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
-Bundle 'tpope/vim-rails.git'
-" vim-scripts repos
-Bundle 'L9'
-Bundle 'FuzzyFinder'
-" non github repos
-Bundle 'git://git.wincent.com/command-t.git'
-" ...
-filetype plugin indent on     " required!
-"
-" Brief help
-" :BundleList          - list configured bundles
-" :BundleInstall(!)    - install(update) bundles
-" :BundleSearch(!) foo - search(or refresh cache first) for foo
-" :BundleClean(!)      - confirm(or auto-approve) removal of unused bundles
-"
-" see :h vundle for more details or wiki for FAQ
-" NOTE: comments after Bundle command are not allowed..
-
-" markdown
-Plugin 'godlygeek/tabular'
-Plugin 'plasticboy/vim-markdown'
-
