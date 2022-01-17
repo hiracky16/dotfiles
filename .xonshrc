@@ -37,4 +37,3 @@ aliases["rm"] = "rm -i"
 aliases["ju"] = "jupyter notebook"
 aliases["doc"] = "docker-compose"
 
-def 
